@@ -8,8 +8,8 @@ namespace PaysonEmbedded {
         /** @var url $notificationUri Notification URI which receives CPR-status updates. */
         public $notificationUri;
         /** @var url $verificationUri Validation URI which is called to verify an order before it can be paid. */
-        public $verificationUri = NULL;
-        /** @var url $termsUri URI som leder till säljarens villkor. */
+        public $validationUri = NULL;
+        /** @var url $termsUri URI leading to the sellers terms. */
         public $termsUri;
         /** @var string $reference Merchants own reference of the checkout.*/
         public $reference = NULL;
@@ -29,7 +29,8 @@ namespace PaysonEmbedded {
         
         public static function create($data) {
             $merchant =  new Merchant($data->checkoutUri,$data->confirmationUri,$data->notificationUri,$data->termsUri, $data->partnerId, $data->integrationInfo);
-			$merchant->reference=$data->reference;
+            $merchant->reference=$data->reference;
+            $merchant->validationUri=$data->validationUri;
             return $merchant;
         }
      
