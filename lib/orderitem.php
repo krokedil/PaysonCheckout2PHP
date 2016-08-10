@@ -10,6 +10,8 @@ namespace PaysonEmbedded{
     
     class OrderItem {
         
+        /** @var string $id */
+        public $itemId;
         /** @var float $discountRate Discount rate of the article (Decimal number (0.00-1.00)). */
         public $discountRate;
         /** @var float $creditedAmount Credited amount (Decimal number (with two decimals)). */
@@ -68,6 +70,9 @@ namespace PaysonEmbedded{
             $item = new OrderItem($data->name, $data->unitPrice, $data->quantity, $data->taxRate, $data->reference, $data->type, isset($data->ean)?$data->ean:null, isset($data->uri)?$data->uri:null, isset($data->imageUri)?$data->imageUri:null);
             $item->discountRate=$data->discountRate;
             $item->creditedAmount=$data->creditedAmount;
+            if(isset($data->itemId)) {
+                $item->itemId = $data->itemId;
+            }
             return $item;
         }
         
